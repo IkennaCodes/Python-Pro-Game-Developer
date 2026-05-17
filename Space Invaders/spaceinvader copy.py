@@ -8,8 +8,12 @@ bg = pygame.image.load("Space Invaders/space.png")
 ship1 = pygame.image.load("Space Invaders/yellowship.png")
 ship2 = pygame.image.load("Space Invaders/redship.png")
 
+RED_HIT = pygame.USEREVENT
+YELLOW_HIT = pygame.USEREVENT
 
 fps = 60
+yellowhealth = 5
+redhealth = 5
 
 yellowship = pygame.transform.rotate(pygame.transform.scale(ship1,(60,40)),90)
 redship = pygame.transform.rotate(pygame.transform.scale(ship2,(60,40)), 270)
@@ -23,6 +27,14 @@ def drawwindow(yellow, red, yellowbullet, redbullet):
         pygame.draw.rect(screen, "yellow", i)
     for i in redbullet:
         pygame.draw.rect(screen, "red", i)
+
+    font = pygame.font.SysFont("Lexend", 40)
+    text = font.render("Yellow Health = " + str(yellowhealth), True, "yellow")
+    screen.blit(text, (100,100))
+
+    font = pygame.font.SysFont("Lexend", 40)
+    text1 = font.render("Red Health = " + str(redhealth), True, "red")
+    screen.blit(text1, (750,100))
 
     pygame.display.update()
 
@@ -48,10 +60,25 @@ def redshipmovement(keypress, red):
         red.y -= 2
 
 def handlebullet(yellowbullet, redbullet, yellow, red):
+    global yellowhealth, redhealth
     for i in yellowbullet:
         i.x += 5
+        if red.colliderect(i):
+            redhealth = redhealth - 1
+            print(redhealth)
+            #generating user event 'RED_HIT'
+            yellowbullet.remove(i)
+            pygame.event.post(pygame.event.Event(RED_HIT))
+            break
     for i in redbullet:
         i.x -= 5
+        if yellow.colliderect(i):
+            yellowhealth = yellowhealth - 1
+            print(yellowhealth)
+            #generating user event 'YELLOW_HIT'
+            redbullet.remove(i)
+            pygame.event.post(pygame.event.Event(YELLOW_HIT))
+            break
 
 #To make the output stay on the screen until cross button is pressed
 def main():
