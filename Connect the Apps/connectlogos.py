@@ -1,0 +1,42 @@
+import pygame
+pygame.init()
+#Defining width and length of screen
+screen = pygame.display.set_mode((600,600))
+pygame.display.set_caption("Connect The Logos")
+screen.fill("orange")
+pygame.display.update()
+candyCrush = pygame.image.load("Connect the Apps/candycrush.jpg")
+screen.blit(candyCrush, (120,150))
+pygame.display.update()
+ludo = pygame.image.load("Connect the Apps/ludo.png")
+screen.blit(ludo, (120,250))
+pygame.display.update()
+subwaySurfers = pygame.image.load("Connect the Apps/subwaysurfer.png")
+screen.blit(subwaySurfers, (120, 350))
+pygame.display.update()
+templeRun = pygame.image.load("Connect the Apps/templerun.png")
+screen.blit(templeRun, (120, 450))
+pygame.display.update()
+font1 = pygame.font.SysFont("Lexend", 60)
+font = pygame.font.SysFont("Lexend", 40)
+title = font1.render("Connecting the Logos!", True, "yellow")
+screen.blit(title, (80, 75))
+pygame.display.update()
+subwaySurfersText = font.render("Subway Surfers", True, "white")
+screen.blit(subwaySurfersText, (300, 180))
+pygame.display.update()
+templeRunText = font.render("Temple Run", True, "white")
+screen.blit(templeRunText, (300, 280))
+pygame.display.update()
+candyCrushText = font.render("Candy Crush", True, "white")
+screen.blit(candyCrushText, (300, 380))
+pygame.display.update()
+ludoText = font.render("Ludo", True, "white")
+screen.blit(ludoText, (300, 480))
+pygame.display.update()
+
+#To make the output stay on the screen until cross button is pressed
+while True:
+    for i in pygame.event.get():
+        if i.type == pygame.QUIT:
+            exit()
