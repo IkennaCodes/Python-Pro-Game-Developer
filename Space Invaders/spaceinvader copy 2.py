@@ -20,6 +20,28 @@ redship = pygame.transform.rotate(pygame.transform.scale(ship2,(60,40)), 270)
 
 #display the ships and bg on screen
 def drawwindow(yellow, red, yellowbullet, redbullet):
+import pygame
+from pygame.locals import *
+pygame.init()
+#Defining width and length of screen
+screen = pygame.display.set_mode((1000,600))
+pygame.display.set_caption("spaceinvadersgame")
+bg = pygame.image.load("Space Invaders/space.png")
+ship1 = pygame.image.load("Space Invaders/yellowship.png")
+ship2 = pygame.image.load("Space Invaders/redship.png")
+
+RED_HIT = pygame.USEREVENT
+YELLOW_HIT = pygame.USEREVENT
+
+fps = 60
+yellowhealth = 10
+redhealth = 10
+
+yellowship = pygame.transform.rotate(pygame.transform.scale(ship1,(60,40)),90)
+redship = pygame.transform.rotate(pygame.transform.scale(ship2,(60,40)), 270)
+
+#display the ships and bg on screen
+def drawwindow(yellow, red, yellowbullet, redbullet):
     screen.blit(bg, (0,0))
     screen.blit(yellowship, (yellow.x,yellow.y))
     screen.blit(redship, (red.x,red.y))
