@@ -40,3 +40,15 @@ while True:
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             exit()
+
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            # wherever you click it gets the position of the mouse
+            pos = pygame.mouse.get_pos()
+            # black is colour, pos is coordinates, 10 is size, 0 is fill circle
+            pygame.draw.circle(screen, "black", (pos), 10, 0)
+            pygame.display.update()
+        elif i.type == pygame.MOUSEBUTTONUP:
+            pos2 = pygame.mouse.get_pos()
+            pygame.draw.line(screen, "black", (pos), (pos2), 10)
+            pygame.draw.circle(screen, "black", (pos2), 10, 0)
+            pygame.display.update()
