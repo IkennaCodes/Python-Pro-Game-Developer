@@ -32,6 +32,11 @@ displayParachute()
 while True:
     screen.blit(bg, (0,0))
     screen.blit(zuko, (zukox,zukoy))
+
+    font = pygame.font.SysFont("Lexend", 40)
+    text = font.render("score = " + str(score), True, "yellow")
+    screen.blit(text, (100,100))
+    
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             exit()
@@ -47,10 +52,6 @@ while True:
                 bullety = zukoy
                 fireball = True
 
-      #  hitting = pygame.sprite.spritecollide(bullet,parachutes,True)
-       # for i in hitting:
-       #     score = score - 1
-
     for i in parachutes:
 
         screen.blit(parachute,(i[0], i[1]))
@@ -59,6 +60,7 @@ while True:
         bullet_rect = pygame.Rect(bulletx, bullety, 20, 40)
         if fireball and parachute_rect.colliderect(bullet_rect):
             parachutes.remove(i)
+            score = score + 1
             fireball = False
             
     if fireball:
